@@ -10,11 +10,8 @@
     <h:body>
         <h:form>
             <p:menubar id="menu" model="#{clienteBean.generarMenu()}">
-                <f:facet name="nombre">
-                    <h:outputText value="#{clienteBean.cliente.nombresCliente} "/>
-                    <h:outputText value="#{clienteBean.cliente.apellidoPatCliente} "/>
-                </f:facet>
                 <f:facet name="options">
+                    <h:outputText value="#{clienteBean.nombresito} "/> &nbsp;&nbsp;&nbsp;&nbsp;
                     <p:commandButton rendered="#{clienteBean.verificarSesionMenu()}" value="CERRAR SESION"  action="#{clienteBean.cerrarSesion()}" immediate="true"/>
                 </f:facet>
             </p:menubar>

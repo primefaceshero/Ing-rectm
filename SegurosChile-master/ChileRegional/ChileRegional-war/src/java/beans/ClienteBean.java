@@ -114,6 +114,12 @@ public class ClienteBean implements Serializable {
         }
     }
 
+    public String getNombresito(){
+        Cliente c = (Cliente) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cliente");
+        c = clienteFacade.find(c.getRutCliente());
+        return c.getNombresCliente() + " " + c.getApellidoPatCliente();
+    }
+    
     public boolean verificarSesionMenu() {
         FacesContext context = FacesContext.getCurrentInstance();
         Cliente c1 = (Cliente) context.getExternalContext().getSessionMap().get("cliente");

@@ -32,10 +32,10 @@ public class NombreProductoBean implements Serializable {
 
     public NombreProductoBean() {
         nom = new Nombreproducto();
-        listita = nombreproductoFacade.findAll();
     }
 
     public List<Nombreproducto> getListita() {
+        listita = nombreproductoFacade.findAll();
         return listita;
     }
 
@@ -54,7 +54,7 @@ public class NombreProductoBean implements Serializable {
     public List<Nombreproducto> getProductos() {
         return nombreproductoFacade.findAll();
     }
-
+    
     public String crearNombreProducto() {
         try {
             
@@ -93,6 +93,16 @@ public class NombreProductoBean implements Serializable {
 
     public void onRowEdit(RowEditEvent event) {
         try {
+            List<Nombreproducto> ñe = nombreproductoFacade.findAll();
+            List<Nombreproducto> dick = listita;
+            for(Nombreproducto temp : listita)
+            {
+                for(Nombreproducto tempo : ñe){
+                    if(temp == tempo){
+                        dick.remove(temp);
+                    }
+                }
+            }
             for(Nombreproducto temp : listita)
             {
                 this.nombreproductoFacade.edit(temp);
@@ -110,5 +120,5 @@ public class NombreProductoBean implements Serializable {
         FacesMessage msg = new FacesMessage("Editado Cancelado", ((Nombreproducto) event.getObject()).getNombre());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
+    
 }

@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/seleccionProductos.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/añadirProductos.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/gestionProductos.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/gestionarClientes.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/añadirVendedor.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/src/java/beans/ProductoBean.java</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/aprobarProductos.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/registrarCliente.xhtml</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/src/java/beans/SupervisorBean.java</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/src/java/beans/VendedorBean.java</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/src/java/beans/NombreProductoBean.java</file>
-            <file>file:/C:/Users/Pelao/Downloads/SegurosChile-master/ChileRegional/ChileRegional-war/web/gestionVendedores.xhtml</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/Ing-rectm/SegurosChile-master/ChileRegional/ChileRegional-war/web/gestionProductos.xhtml</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/Ing-rectm/SegurosChile-master/ChileRegional/ChileRegional-war/src/java/beans/ClienteBean.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/Ing-rectm/SegurosChile-master/ChileRegional/ChileRegional-war/src/java/beans/NombreProductoBean.java</file>
+            <file>file:/C:/Users/Sebastian/Documents/GitHub/Ing-rectm/SegurosChile-master/ChileRegional/ChileRegional-war/web/includes/menuCliente.xhtml</file>
         </group>
     </open-files>
 </project-private>
