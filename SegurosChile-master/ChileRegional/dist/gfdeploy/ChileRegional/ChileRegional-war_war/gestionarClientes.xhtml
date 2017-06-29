@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestionar Clientes</title>
+        <f:event type="preRenderView" listener="#{superAdministradorBean.verificarSesion()}"/>
+        <link rel="icon" type="image/png" href="../resources/images/favicon.png" />
+    </h:head>
+    <h:body style="background-image: url('../resources/images/fondo.jpg');">
+        <ui:include src="includes/menuSuperAdministrador.xhtml"/>
+        <h:form id="form">
+            <center>
+                <br/><br/><br/><br/><br/><br/><br/>
+                <p:messages id="mensaje" autoUpdate="false"/>
+
+                <p:dataTable id="clientes" var="cli" value="#{clienteBean.clientes}" editable="true" style="margin-bottom:20px" emptyMessage="No se han encontrado clientes en la base de datos">
+                    <f:facet name="header">
+                        Gestión de Clientes
+                    </f:facet>
+
+                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:mensaje" />
+                    <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:mensaje" />
+
+                    <p:column headerText="Rut">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.rutCliente}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{cli.rutCliente}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="DV">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.dvCliente}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{cli.dvCliente}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.nombresCliente}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{cli.nombresCliente}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Apellido Paterno">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.apellidoPatCliente}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{cli.apellidoPatCliente}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Apellido Materno">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.apellidoMatCliente}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{cli.apellidoMatCliente}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Dirección">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.direccionCliente}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{cli.direccionCliente}" style="width:100%" required="true" requiredMessage="Debe ingresar una dirección" onkeypress="return direccion(event);" maxlength="30"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Teléfono">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.telefonoCliente}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{cli.telefonoCliente}" style="width:100%" required="true" requiredMessage="Debe ingresar un teléfono" onkeypress="return justNumbers(event);" maxlength="11"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Correo">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.correoCliente}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{cli.correoCliente}" style="width:100%" required="true" requiredMessage="Debe ingresar un correo electrónico" validatorMessage="Formato de correo no válido" maxlength="30">
+                                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
+                                </p:inputText>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Actividad">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.actividad}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{cli.actividad}" style="width:100%" required="true" requiredMessage="Debe ingresar una actividad" onkeypress="return letras(event);" maxlength="30"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Nombre Beneficiario">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.beneficiario1Nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{cli.beneficiario1Nombre}" style="width:100%" required="true" requiredMessage="Debe ingresar un beneficiario" onkeypress="return letras(event);" maxlength="30"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Nombre Beneficiario 2">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{cli.beneficiario2Nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{cli.beneficiario2Nombre}" style="width:100%" required="true" requiredMessage="Debe ingresar un segundo beneficiario" onkeypress="return letras(event);" maxlength="30"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+
+                    <p:column style="width:32px">
+                        <p:commandButton icon="ui-icon-close"  actionListener="#{clienteBean.eliminarCliente(cli)}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+                <br/><br/><br/><br/><br/>
+            </center>
+        </h:form>
+        
+        <script type="text/javascript">
+            function justNumbers(e)
+            {
+                var keynum = window.event ? window.event.keyCode : e.which;
+                if (keynum == 8)
+                    return true;
+
+                return /\d/.test(String.fromCharCode(keynum));
+            }
+            
+            function dv(e)
+            {
+                var keynum = window.event ? window.event.keyCode : e.which;
+                if (keynum == 8 || keynum == 75 || keynum == 107)
+                    return true;
+
+                return /\d/.test(String.fromCharCode(keynum));
+            }
+
+            function letras(e)
+            {
+                var tecla = window.event ? window.event.keyCode : e.which;
+                if (tecla == 8 || tecla == 164 || tecla == 165)
+                    return true;
+
+                patron = /^[a-zA-z\s\ñ\Ñ]+$/; // 4
+                te = String.fromCharCode(tecla); // 5
+                return patron.test(te);
+
+            }
+            
+            function direccion(e)
+            {
+                var tecla = window.event ? window.event.keyCode : e.which;
+                if (tecla == 8 || tecla == 164 || tecla == 165 || tecla == 35)
+                    return true;
+
+                patron = /^[a-zA-z\s\ñ\Ñ]+$/; // 4
+                te = String.fromCharCode(tecla); // 5
+                return patron.test(te);
+
+            }
+
+        </script>
+
+
+        <h:outputScript name="js/spanishLocale.js" />
+    </h:body>
+</html>
+

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestion Vendedores</title>
+        <f:event type="preRenderView" listener="#{superAdministradorBean.verificarSesion()}"/>
+        <link rel="icon" type="image/png" href="../resources/images/favicon.png" />
+    </h:head>
+    <h:body style="background-image: url('../resources/images/fondo.jpg');">
+        <ui:include src="includes/menuSuperAdministrador.xhtml"/>
+        <h:form id="form">
+            <center>
+                <br/><br/><br/><br/><br/><br/><br/>
+                <p:messages id="mensaje" autoUpdate="false"/>
+
+                <p:dataTable id="vendedores" var="ven" value="#{vendedorBean.vendedores}" editable="true" style="margin-bottom:20px;height:200px; width: 1300px;" emptyMessage="No se han encontrado vendedores en la base de datos">
+                    <f:facet name="header">
+                        Gestión de Vendedores
+                    </f:facet>
+
+                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:mensaje" />
+                    <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:mensaje" />
+
+                    <p:column headerText="Rut">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{ven.rutVendedor}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{ven.rutVendedor}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{ven.nombreVendedor}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{ven.nombreVendedor}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Correo">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{ven.correoVendedor}" /></f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{ven.correoVendedor}" style="width:100%" required="true" requiredMessage="Debe ingresar un correo electrónico" validatorMessage="Formato de correo no válido" maxlength="30">
+                                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"  />
+                                </p:inputText>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+
+                </p:dataTable>
+
+                <br/><br/><br/><br/><br/>
+                <p:commandButton value="AÑADIR VENDEDOR" action="añadirVendedor?faces-redirect=true" icon="ui-icon-plus"/>
+            </center>
+        </h:form>
+    </h:body>
+</html>
+

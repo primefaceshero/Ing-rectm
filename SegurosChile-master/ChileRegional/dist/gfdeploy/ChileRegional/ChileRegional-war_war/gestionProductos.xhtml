@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestión de Productos</title>
+        <f:event type="preRenderView" listener="#{superAdministradorBean.verificarSesion()}"/>
+        <link rel="icon" type="image/png" href="../resources/images/favicon.png" />
+    </h:head>
+    <h:body style="background-image: url('../resources/images/fondo.jpg');">
+        <ui:include src="includes/menuSuperAdministrador.xhtml"/>
+
+        <h:form id="form">
+            <center>
+                <p:messages id="mensaje" autoUpdate="false"/>
+
+                <br/><br/><br/><br/><br/><br/><br/>
+                <p:dataTable id="productos" var="prod" value="#{nombreProductoBean.productos}" editable="true" style="margin-bottom:20px;height:250px; width: 800px;" emptyMessage="No se han encontrado productos en la base de datos">
+                    <f:facet name="header">
+                        Gestión de Productos
+                    </f:facet>
+
+                    <p:ajax event="rowEdit" listener="#{nombreProductoBean.onRowEdit}" update=":form:mensaje" />
+                    <p:ajax event="rowEditCancel" listener="#{nombreProductoBean.onRowCancel}" update=":form:mensaje" />
+
+                    <p:column headerText="ID">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{prod.id}" /></f:facet>
+                            <f:facet name="input"><h:outputText value="#{prod.id}" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{prod.nombre}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{prod.nombre}" required="true" requiredMessage="Debe ingresar un nombre" onkeypress="return letras(event);" maxlength="30" style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:32px">
+                        <p:rowEditor />
+                    </p:column>
+
+                    <p:column style="width:32px">
+                        <p:commandButton icon="ui-icon-close" id="borrar" actionListener="#{nombreProductoBean.eliminarSupervisor(prod)}" update=":form:mensaje productos"/>
+                        <p:tooltip for="borrar" value="Eliminar" position="right"/>
+                    </p:column>
+
+                </p:dataTable>
+                <br/><br/><br/><br/><br/>
+                <p:commandButton value="AÑADIR PRODUCTOS" action="añadirProductos?faces-redirect=true" icon="ui-icon-plus" />
+            </center>
+        </h:form>
+
+        <script type="text/javascript">
+            function letras(e)
+            {
+                var tecla = window.event ? window.event.keyCode : e.which;
+                if (tecla == 8 || tecla == 164 || tecla == 165)
+                    return true;
+
+                patron = /^[a-zA-z\s\ñ\Ñ]+$/; // 4
+                te = String.fromCharCode(tecla); // 5
+                return patron.test(te);
+
+            }
+
+        </script>
+
+
+        <h:outputScript name="js/spanishLocale.js" />
+    </h:body>
+</html>
+
